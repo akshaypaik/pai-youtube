@@ -1,13 +1,17 @@
 .search-bar-container{
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .search-bar-container input{
-    padding: 6px 8px;
+    /* padding: 9px; */
+    padding: 9px 0 9px 18px;
     background-color: #0f0f0f;
     border: 0.5px solid hsla(0,0%,53.3%,0.4);
-    border-radius: 8px;
+    border-radius: 24px;
     color: hsla(0,100%,100%,0.88);
     width: 480px;
 }
@@ -16,4 +20,18 @@
     outline: none;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
     border: 0.5px solid blue !important;
+}
+
+.search-bar-container svg{
+    position: absolute;
+    /* left: 8px; */
+    right: 0;
+    text-align: center;
+    border-left: 0.5px solid hsla(0,0%,53.3%,0.4);
+    padding-right: 8px;
+    padding-left: 8px;
+    cursor: pointer;
+    background-color: hsla(0,0%,100%,.08);
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
