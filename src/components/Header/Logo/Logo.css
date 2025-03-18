@@ -1,6 +1,8 @@
 .logo-container {
     display: flex;
     gap: 8px;
+    user-select: none;
+    align-items: center;
 }
 
 .logo-container p {

@@ -8,12 +8,10 @@ import { toggleSideBar } from '../../utils/ReduxStore/headerSlice';
 
 const Header = () => {
 
-    const [showSideBar, setShowSideBar] = useState(true);
     const dispatch = useDispatch();
 
     const handleToggleSideBar = () => {
-        setShowSideBar(!showSideBar);
-        dispatch(toggleSideBar(showSideBar));
+        dispatch(toggleSideBar());
     }
 
     return (
