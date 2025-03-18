@@ -1,0 +1,12 @@
+.logo-container {
+    display: flex;
+    gap: 8px;
+}
+
+.logo-container p {
+    font-family: "Rubik", sans-serif;
+}
+
+.logo-container img{
+    height: 42px;
+}
