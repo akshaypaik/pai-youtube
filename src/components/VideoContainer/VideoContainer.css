@@ -1,0 +1,7 @@
+.video-container{
+    margin: 36px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+}

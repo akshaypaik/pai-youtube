@@ -1,0 +1,39 @@
+.video-card-container{
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.video-card-container ul{
+    padding-left: 0;
+}
+
+.video-card-container ul li{
+    list-style-type: none;
+}
+
+.video-card-container img{
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.video-card-container:hover{
+    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.1) scaleY(1.1);
+    transition-duration: .4s;
+}
+
+.video-title{
+    max-width: 50px;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+.video-channel-title, .video-view-count, .view-count-days{
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+.view-count-days{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
