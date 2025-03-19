@@ -19,11 +19,13 @@ const VideoContainer = () => {
     fetchPopularVideos();
   }, []);
 
-
   return (
     <div className='video-container'>
       {/* <VideoCard videoInfo={popularVideos[0]} /> */}
-      {popularVideos.map((video) => <Link to={`/watch?v=${video.id}`}> <VideoCard key={video.id} videoInfo={video} />  </Link>)}
+      {popularVideos.map((video) =>
+        <Link to={`/watch?v=${video.id}`} key={video.id}>
+          <VideoCard videoInfo={video} />
+        </Link>)}
     </div>
   )
 }

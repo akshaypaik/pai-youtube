@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './VideoCard.css';
+import { updateCurrentWatchVideo } from '../../../utils/ReduxStore/watchSlice';
+import { useDispatch } from 'react-redux';
 
 const VideoCard = ({ videoInfo }) => {
 
     if (!videoInfo) return;
+
+    const dispatch = useDispatch();
 
     console.log("video card info: ", videoInfo);
     const { snippet, statistics } = videoInfo;
@@ -30,8 +34,12 @@ const VideoCard = ({ videoInfo }) => {
         setDaysAgo(`${seconds} second${seconds > 1 ? 's' : ''} ago`); return;
     }
 
+    const handleVideoClick = () => {
+        dispatch(updateCurrentWatchVideo(videoInfo));
+    }
+
     return (
-        <div className='video-card-container'>
+        <div className='video-card-container' onClick={handleVideoClick}>
             <img src={thumbnails.medium.url} />
             <ul>
                 <li className='video-title'>{title}</li>
