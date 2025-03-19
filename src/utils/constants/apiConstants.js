@@ -6,5 +6,8 @@ export const GOOGLE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/co
 
 export const YOUTUBE_VIDEO_DETAILS_USING_ID = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=`
 
+export const YOUTUBE_VIDEO_COMMENTS_USING_ID = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId="
+
+
 
 

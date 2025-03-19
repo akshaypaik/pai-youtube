@@ -1,0 +1,36 @@
+.comments-card{
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+}
+
+.comment-author-image img{
+    border-radius: 24px;
+}
+
+.comment-author-description{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comment-author{
+    font-size: 0.8rem;
+}
+
+.comment-description{
+    font-weight: 300;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 1200px;
+    overflow: hidden;
+}
+
+.like-count{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #aaa;
+}
