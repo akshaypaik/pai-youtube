@@ -9,7 +9,6 @@ const VideoCard = ({ videoInfo }) => {
 
     const dispatch = useDispatch();
 
-    console.log("video card info: ", videoInfo);
     const { snippet, statistics } = videoInfo;
     const { title, channelTitle, thumbnails, publishedAt } = snippet;
     const [daysAgo, setDaysAgo] = useState("");

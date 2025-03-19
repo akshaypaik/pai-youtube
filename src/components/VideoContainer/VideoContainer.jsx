@@ -11,7 +11,6 @@ const VideoContainer = () => {
   const fetchPopularVideos = async () => {
     const data = await fetch(YOUTUBE_MOST_POPULAR_VIDEO);
     const jsonData = await data.json();
-    console.log("most popular videos data: ", jsonData);
     setPopularVideos(jsonData.items);
   }
 
