@@ -3,7 +3,7 @@ import './WatchPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSideBar } from '../../utils/ReduxStore/appSlice';
 import { useSearchParams } from 'react-router-dom';
-import { YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID } from '../../utils/constants/apiConstants';
+import { YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID, YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID, YOUTUBE_VIDEO_SUGGESTIONS_USING_ID } from '../../utils/constants/apiConstants';
 import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
 
@@ -13,25 +13,35 @@ const WatchPage = () => {
     const [searchParams] = useSearchParams();
     const [currentWatchVideo, setCurrentWatchVideo] = useState({});
     const [videoComments, setVideoComments] = useState([]);
+    const [suggestionVideos, setSuggestionVideos] = useState([]);
     // let currentWatchVideo = useSelector((store) => store.watch.currentWatchVideo);
 
-    const fetchVideoDetails = async() => {
+    const fetchVideoDetails = async () => {
         const result = await fetch(`${YOUTUBE_VIDEO_DETAILS_USING_ID}${searchParams.get("v")}&key=${YOUTUBE_API_KEY}`);
         const resultJson = await result.json();
         setCurrentWatchVideo(resultJson.items[0]);
     }
 
-    const fetchVideoComments = async() => {
+    const fetchVideoComments = async () => {
         const result = await fetch(`${YOUTUBE_VIDEO_COMMENTS_USING_ID}${searchParams.get("v")}&maxResults=50&key=${YOUTUBE_API_KEY}`);
         const resultJson = await result.json();
         setVideoComments(resultJson.items);
-        console.log("video comments: ", resultJson);
+    }
+
+    const fetchVideoSuggestions = async() => {
+        const result = await fetch(`${YOUTUBE_VIDEO_SUGGESTIONS_USING_ID}${searchParams.get("v")}&type=video&maxResults=10&key=${YOUTUBE_API_KEY}`);
+        const resultJson = await result.json();
+        const resultCategory = await fetch(`${YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID}${resultJson.items[0].snippet.categoryId}&maxResults=10&key=${YOUTUBE_API_KEY}`);
+        const resultCategoryJson = await resultCategory.json();
+        setSuggestionVideos(resultCategoryJson.items);
+        console.log("video suggestions: ", resultCategoryJson.items);
     }
 
     useEffect(() => {
         dispatch(closeSideBar());
         fetchVideoDetails();
         fetchVideoComments();
+        fetchVideoSuggestions();
     }, []);
 
     return (
@@ -47,12 +57,12 @@ const WatchPage = () => {
             <div className='watch-video-description-container'>
                 <div className='watch-video-description'>{currentWatchVideo?.snippet?.description}</div>
                 <span>&nbsp;</span>
-                <span style={{cursor: 'pointer'}}>...more</span>
+                <span style={{ cursor: 'pointer' }}>...more</span>
             </div>
             <div className='comments-container'>
                 {parseInt(currentWatchVideo?.statistics?.commentCount).toLocaleString()} Comments
             </div>
-            <CommentsContainer commentsList={ videoComments } />
+            <CommentsContainer commentsList={videoComments} />
         </div>
     )
 }

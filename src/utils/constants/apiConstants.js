@@ -8,6 +8,9 @@ export const YOUTUBE_VIDEO_DETAILS_USING_ID = `https://www.googleapis.com/youtub
 
 export const YOUTUBE_VIDEO_COMMENTS_USING_ID = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId="
 
+export const YOUTUBE_VIDEO_SUGGESTIONS_USING_ID = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="
+
+export const YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID = "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videoCategoryId="
 
 
 
