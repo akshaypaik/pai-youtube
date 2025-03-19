@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './WatchPage.css';
 
 const WatchPage = () => {
   return (
-    <div>
-        
+    <div className='watch-container'>
+        Watch Page
     </div>
   )
 }
 
-export default WatchPage
+export default WatchPage;
