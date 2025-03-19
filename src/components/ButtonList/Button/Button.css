@@ -1,0 +1,17 @@
+.btn-container button {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-color: hsla(0, 0%, 53.3%, 0.4);
+    border-radius: 8px;
+    outline: none;
+    border: 0.5px solid transparent;
+    white-space: nowrap;
+}
+
+.btn-container button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+}

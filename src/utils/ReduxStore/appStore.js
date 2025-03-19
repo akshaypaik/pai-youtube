@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import headerReducer from "./headerSlice";
+import appReducer from "./appSlice";
 
 const appStore = configureStore({
     reducer: {
-        header: headerReducer
+        app: appReducer
     }
 })
 

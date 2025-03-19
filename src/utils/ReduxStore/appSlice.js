@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const headerSlice = createSlice({
+const appSlice = createSlice({
     name: "header",
     initialState: {
         showSideBar: true
@@ -12,6 +12,6 @@ const headerSlice = createSlice({
     }
 });
 
-export default headerSlice.reducer;
+export default appSlice.reducer;
 
-export const { toggleSideBar } = headerSlice.actions;
+export const { toggleSideBar } = appSlice.actions;

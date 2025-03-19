@@ -10,13 +10,14 @@
 .sidebar-ul li {
     list-style-type: none;
     padding: 6px 24px 6px 0;
-    color: white;
+    color: #f1f1f1;
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 14px;
+    font-size: 0.8rem;
     letter-spacing: 0.2px;
     margin-right: 4px;
+    white-space: nowrap;
 }
 
 .sidebar-ul li:hover {

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Body = () => {
 
-    const showSideBar = useSelector((store) => store.header.showSideBar);
+    const showSideBar = useSelector((store) => store.app.showSideBar);
 
     return (
         <div className='body-container'>
