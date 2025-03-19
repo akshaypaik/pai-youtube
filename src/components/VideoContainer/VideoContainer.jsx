@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './VideoContainer.css';
 import { YOUTUBE_MOST_POPULAR_VIDEO } from '../../utils/constants/apiConstants';
 import VideoCard from './VideoCard/VideoCard';
+import { Link } from 'react-router-dom';
 
 const VideoContainer = () => {
 
   const [popularVideos, setPopularVideos] = useState([]);
 
-  const fetchPopularVideos = async() => {
+  const fetchPopularVideos = async () => {
     const data = await fetch(YOUTUBE_MOST_POPULAR_VIDEO);
     const jsonData = await data.json();
     console.log("most popular videos data: ", jsonData);
@@ -22,7 +23,7 @@ const VideoContainer = () => {
   return (
     <div className='video-container'>
       {/* <VideoCard videoInfo={popularVideos[0]} /> */}
-      {popularVideos.map((video) => <VideoCard key={video.id} videoInfo={video} /> )}
+      {popularVideos.map((video) => <Link to={`/watch?v=${video.id}`}> <VideoCard key={video.id} videoInfo={video} />  </Link>)}
     </div>
   )
 }

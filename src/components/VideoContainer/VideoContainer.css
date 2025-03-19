@@ -1,8 +1,12 @@
-.video-container{
+.video-container {
     display: flex;
     gap: 24px;
     flex-wrap: wrap;
     text-overflow: ellipsis;
     justify-content: center;
     margin-top: 24px;
+}
+
+a {
+    all: unset;
 }
