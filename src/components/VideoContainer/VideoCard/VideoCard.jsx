@@ -44,8 +44,8 @@ const VideoCard = ({ videoInfo }) => {
                 <li className='video-title'>{title}</li>
                 <li className='video-channel-title'>{channelTitle}</li>
                 <div className='view-count-days'>
-                    <li className='video-view-count'>{statistics.viewCount > 1000 ? (statistics.viewCount / 1000).toFixed(2) + 'K' : statistics.viewCount} views</li>
-                    <li>.</li>
+                    {statistics?.viewCount && <li className='video-view-count'>{statistics?.viewCount > 1000 ? (statistics?.viewCount / 1000).toFixed(2) + 'K' : statistics?.viewCount} views</li>}
+                    {statistics?.viewCount && <li>.</li>}
                     <li>{daysAgo}</li>
                 </div>
             </ul>
