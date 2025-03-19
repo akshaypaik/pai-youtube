@@ -4,5 +4,7 @@ export const YOUTUBE_MOST_POPULAR_VIDEO = `https://youtube.googleapis.com/youtub
 
 export const GOOGLE_SEARCH_SUGGESTION_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const YOUTUBE_VIDEO_DETAILS_USING_ID = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=`
+
 
 
