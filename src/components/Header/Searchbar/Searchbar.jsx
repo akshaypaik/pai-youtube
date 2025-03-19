@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './Searchbar.css';
 import { GOOGLE_SEARCH_SUGGESTION_API } from '../../../utils/constants/apiConstants';
 import SearchResultContainer from './SearchResultContainer/SearchResultContainer';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSearchSuggestionCache } from '../../../utils/ReduxStore/searchSlice';
 
 const Searchbar = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const dispatch = useDispatch();
+  const cacheSearchResults = useSelector((store) => store.search.searchResultCache);
 
   useEffect(() => {
+    // Early return pattern
+    if(cacheSearchResults[searchQuery]){
+      setSearchResults(cacheSearchResults[searchQuery]);
+      return;
+    }
     const timer = setTimeout(() => {
       fetchQuerySearchResults(searchQuery);
     }, 300);
@@ -27,6 +36,7 @@ const Searchbar = () => {
     const results = await fetch(`${GOOGLE_SEARCH_SUGGESTION_API}${searchQuery}`);
     const jsonResult = await results.json();
     setSearchResults(jsonResult[1]);
+    dispatch(updateSearchSuggestionCache({ searchString: searchQuery, searchResult: jsonResult[1] }));
   }
 
   return (
