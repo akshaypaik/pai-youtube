@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CommentsCard.css';
 
 const CommentsCard = ({ commentInfo }) => {
 
+    if(!commentInfo.snippet) return;
+
     const { snippet } = commentInfo;
+    const { publishedAt } = snippet?.topLevelComment?.snippet;
+    const [daysAgo, setDaysAgo] = useState("");
+
+    useEffect(() => {
+            calculateDaysAgo();
+        }, []);
+    
+        const calculateDaysAgo = () => {
+            const now = new Date();
+            const past = new Date(publishedAt);
+            const diffMs = now - past;
+    
+            const seconds = Math.floor(diffMs / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+    
+            if (days > 0) { setDaysAgo(`${days} day${days > 1 ? 's' : ''} ago`); return; }
+            if (hours > 0) { setDaysAgo(`${hours} hour${hours > 1 ? 's' : ''} ago`); return; }
+            if (minutes > 0) { setDaysAgo(`${minutes} minute${minutes > 1 ? 's' : ''} ago`); return; }
+            setDaysAgo(`${seconds} second${seconds > 1 ? 's' : ''} ago`); return;
+        }
 
     return (
         <div className='comments-card'>
@@ -13,6 +37,7 @@ const CommentsCard = ({ commentInfo }) => {
             <div className='comment-author-description'>
                 <div className='comment-author'>
                     {snippet?.topLevelComment?.snippet.authorDisplayName}
+                    <span className='comment-published-at'>{daysAgo}</span>
                 </div>
                 <div className='comment-description'>
                     {snippet?.topLevelComment?.snippet.textDisplay}

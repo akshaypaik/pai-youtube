@@ -67,6 +67,7 @@ const WatchPage = () => {
                 <CommentsContainer commentsList={videoComments} />
             </div>
             <div className='suggestion-video-container'>
+                <h3>Suggestions</h3>
                 {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)}
             </div>
         </div>

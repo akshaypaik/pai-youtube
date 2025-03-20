@@ -16,6 +16,14 @@
 
 .comment-author {
     font-size: 0.8rem;
+    display: flex;
+    gap: 8px;
+}
+
+.comment-published-at{
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #aaa;
 }
 
 .comment-description {
