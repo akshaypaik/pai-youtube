@@ -26,7 +26,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <RouterProvider router={appRouter} />
     </>
   )
