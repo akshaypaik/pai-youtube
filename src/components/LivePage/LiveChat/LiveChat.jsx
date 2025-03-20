@@ -51,12 +51,12 @@ const LiveChat = () => {
                 </div>
 
             </div>
-            <div className='live-chat-input-container'>
+            <form className='live-chat-input-container' onSubmit={(e) => e.preventDefault()}>
                 <input type='text' placeholder='Chat...' value={userMessage}  onChange={(e) => setUserMessage(e.target.value)} />
-                <span onClick={handleUserMessagePublish}>
+                <button onClick={handleUserMessagePublish}>
                     <svg fill='white' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style={{ display: 'inherit', height: '100%' }}><path d="M5 12 3 3l19 9-19 9 2-9zm.82.93-1.4 6.29L19.66 12 4.42 4.78l1.4 6.29L17 12l-11.18.93z" fillRule="evenodd"></path></svg>
-                </span>
-            </div>
+                </button>
+            </form>
         </div>
     )
 }
