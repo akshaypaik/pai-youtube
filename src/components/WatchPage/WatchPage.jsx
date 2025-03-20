@@ -91,9 +91,9 @@ const WatchPage = () => {
                 <h3>Suggestions</h3>
                 {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)}
             </div>}
-            {isLivePage && <div>
+            {isLivePage &&
                 <LiveChat />
-            </div>}
+            }
         </div>
     )
 }

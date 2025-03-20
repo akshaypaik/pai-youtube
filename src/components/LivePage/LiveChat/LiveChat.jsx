@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './LiveChat.css';
 import ChatMessage from '../ChatMessage/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,37 +9,54 @@ const LiveChat = () => {
 
     const dispatch = useDispatch();
     const chatMessages = useSelector((store) => store.chat.messages);
-    const chatContainerRef = useRef(null);
+    const [userMessage, setUserMessage] = useState("");
+    // const chatContainerRef = useRef(null);
 
     useEffect(() => {
         //API Polling
         const interval = setInterval(() => {
             console.log("API polling");
             dispatch(addChatMessage({ authorName: generateRandomNamesForLiveChat(), authorMessage: generateRandomMessagesForLiveChat() }));
-        }, 600);
+        }, 1500);
 
         return () => {
             clearInterval(interval);
         }
     }, []);
 
-    useEffect(() => {
-        // Scroll to bottom whenever chatMessages changes
-        if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
-    }, [chatMessages]);
+    // useEffect(() => {
+    //     // Scroll to bottom whenever chatMessages changes
+    //     if (chatContainerRef.current) {
+    //         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    //     }
+    // }, [chatMessages]);
+
+    const handleUserMessagePublish = () => {
+        dispatch(addChatMessage({ authorName: "Akshay Pai", authorMessage: userMessage }));
+        setUserMessage("");
+    }
 
     return (
-        <div className='live-chat-container' ref={chatContainerRef}>
-            <div className='live-chat-heading'>
-                <span>Top Chat</span>
+        <div className='live-chat'>
+            <div className='live-chat-wrapper'>
+                <div className='live-chat-heading'>
+                    <span>Top Chat</span>
+                </div>
+                <hr />
+                <div className='live-chat-container'>
+                    {/* <ChatMessage authorName="Akshay Pai" authorMessage="This is Pai YouTube! ▶️" /> */}
+                    {chatMessages.map((chatMessage, index) =>
+                        <ChatMessage key={index} authorName={chatMessage.authorName}
+                            authorMessage={chatMessage.authorMessage} />)}
+                </div>
+
             </div>
-            <hr />
-            {/* <ChatMessage authorName="Akshay Pai" authorMessage="This is Pai YouTube! ▶️" /> */}
-            {chatMessages.map((chatMessage, index) =>
-                <ChatMessage key={index} authorName={chatMessage.authorName}
-                    authorMessage={chatMessage.authorMessage} />)}
+            <div className='live-chat-input-container'>
+                <input type='text' placeholder='Chat...' value={userMessage}  onChange={(e) => setUserMessage(e.target.value)} />
+                <span onClick={handleUserMessagePublish}>
+                    <svg fill='white' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style={{ display: 'inherit', height: '100%' }}><path d="M5 12 3 3l19 9-19 9 2-9zm.82.93-1.4 6.29L19.66 12 4.42 4.78l1.4 6.29L17 12l-11.18.93z" fillRule="evenodd"></path></svg>
+                </span>
+            </div>
         </div>
     )
 }
