@@ -45,7 +45,7 @@ h3{
        width: 1000px !important;
        height: 500px !important;
     }
-    .watch-video-description-container{
+    .watch-video-description-container,.watch-video-title, .watch-video-channel-title, .comments-container{
         max-width: 1000px;
     }
 }

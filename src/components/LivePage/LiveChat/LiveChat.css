@@ -1,0 +1,13 @@
+.live-chat-container{
+    min-width: 400px;
+    min-height: 600px;
+    max-width: 400px;
+    max-height: 600px;
+    border: 0.5px solid hsla(0,0%,53.3%,0.4);
+    border-radius: 8px;
+}
+
+.live-chat-heading{
+    padding: 12px 12px 12px 24px;
+}
+

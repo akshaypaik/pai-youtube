@@ -8,6 +8,7 @@ import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
 import VideoCard from '../VideoContainer/VideoCard/VideoCard';
 import { updateWatchVideoCommentDetailsCache, updateWatchVideoDetailsCache, updateWatchVideoSuggestionDetailsCache } from '../../utils/ReduxStore/apiCacheSlice';
+import LiveChat from '../LivePage/LiveChat/LiveChat';
 
 const WatchPage = () => {
 
@@ -91,7 +92,7 @@ const WatchPage = () => {
                 {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)}
             </div>}
             {isLivePage && <div>
-                Live chat
+                <LiveChat />
             </div>}
         </div>
     )

@@ -1,0 +1,29 @@
+.chat-message-container img{
+    height: 42px;
+    border-radius: 24px;
+}
+
+.chat-message-container{
+    display: flex;
+    padding: 12px 12px 12px 24px;
+    gap: 12px;
+    align-items: center;
+}
+
+.chat-message-container:hover{
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+
+.chat-msg-author-name{
+    padding-right: 12px;
+    font-weight: 600;
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+.chat-msg-author-message{
+    font-weight: 400;
+    color: white;
+    font-size: 0.8rem;
+}
