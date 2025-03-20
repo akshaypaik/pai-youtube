@@ -5,9 +5,16 @@
     max-height: 600px;
     border: 0.5px solid hsla(0,0%,53.3%,0.4);
     border-radius: 8px;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: relative;
 }
 
 .live-chat-heading{
     padding: 12px 12px 12px 24px;
+    position: sticky;
+    top: 0;
+    background: black;
+    z-index: 10;
 }
 

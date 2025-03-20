@@ -5,6 +5,7 @@ import VideoCard from './VideoCard/VideoCard';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMostPopularVideosCache } from '../../utils/ReduxStore/apiCacheSlice';
+import Error from '../Error/Error';
 
 const VideoContainer = () => {
 
@@ -28,13 +29,15 @@ const VideoContainer = () => {
   }, []);
 
   return (
-    <div className='video-container'>
+    <>
+    { popularVideos && popularVideos.length > 0 ? <div className='video-container'>
       {/* <VideoCard videoInfo={popularVideos[0]} /> */}
-      {popularVideos.map((video) =>
+      {popularVideos?.map((video) =>
         <Link to={`/watch?v=${video.id}`} key={video.id}>
           <VideoCard videoInfo={video} />
         </Link>)}
-    </div>
+    </div> : <Error />}
+    </>
   )
 }
 
