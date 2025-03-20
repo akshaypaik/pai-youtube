@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import ButtonList from '../ButtonList/ButtonList'
-import VideoContainer from '../VideoContainer/VideoContainer'
 import './MainContainer.css';
 import { useDispatch } from 'react-redux';
 import { openSideBar } from '../../utils/ReduxStore/appSlice';
+import { Outlet } from 'react-router-dom';
 
 const MainContainer = () => {
 
@@ -16,7 +16,7 @@ const MainContainer = () => {
   return (
     <div className='main-container'>
       <ButtonList />
-      <VideoContainer />
+      <Outlet />
     </div>
   )
 }

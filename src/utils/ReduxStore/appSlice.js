@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const appSlice = createSlice({
     name: "header",
     initialState: {
-        showSideBar: true
+        showSideBar: true,
+        isLivePage: false
     },
     reducers: {
         toggleSideBar: (state, action) => {
@@ -14,10 +15,13 @@ const appSlice = createSlice({
         },
         openSideBar: (state) => {
             state.showSideBar = true;
+        },
+        setLivePageFlag: (state, action) => {
+            state.isLivePage = action.payload;
         }
     }
 });
 
 export default appSlice.reducer;
 
-export const { toggleSideBar, closeSideBar, openSideBar } = appSlice.actions;
+export const { toggleSideBar, closeSideBar, openSideBar, setLivePageFlag } = appSlice.actions;

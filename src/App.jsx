@@ -4,6 +4,8 @@ import Body from './components/Body/Body'
 import Header from './components/Header/Header'
 import WatchPage from './components/WatchPage/WatchPage';
 import MainContainer from './components/MainContainer/MainContainer';
+import LivePage from './components/LivePage/LivePage';
+import VideoContainer from './components/VideoContainer/VideoContainer';
 
 const appRouter = createBrowserRouter([
   {
@@ -12,7 +14,17 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <MainContainer />
+        element: <MainContainer />,
+        children: [
+          {
+            path: '/',
+            element: <VideoContainer />
+          },
+          {
+            path: '/live',
+            element: <LivePage />
+          }
+        ]
       },
       {
         path: '/watch',

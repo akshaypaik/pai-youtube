@@ -16,6 +16,7 @@ const WatchPage = () => {
     const [currentWatchVideo, setCurrentWatchVideo] = useState({});
     const [videoComments, setVideoComments] = useState([]);
     const [suggestionVideos, setSuggestionVideos] = useState([]);
+    const isLivePage = useSelector((store) => store.app.isLivePage);
     const watchVideoCache = useSelector((store) => store.apiCache.watchVideoDetails);
     const watchCommentsCache = useSelector((store) => store.apiCache.watchVideoComments);
     const watchSuggestionsCache = useSelector((store) => store.apiCache.watchVideoSuggestions);
@@ -47,19 +48,19 @@ const WatchPage = () => {
 
     useEffect(() => {
         dispatch(closeSideBar());
-        if(!watchVideoCache[`${searchParams.get("v")}`]){
+        if (!watchVideoCache[`${searchParams.get("v")}`]) {
             fetchVideoDetails();
-        }else{
+        } else {
             setCurrentWatchVideo(watchVideoCache[`${searchParams.get("v")}`]);
         }
-        if(!watchCommentsCache[`${searchParams.get("v")}`]){
+        if (!watchCommentsCache[`${searchParams.get("v")}`]) {
             fetchVideoComments();
-        }else{
+        } else {
             setVideoComments(watchCommentsCache[`${searchParams.get("v")}`]);
         }
-        if(!watchSuggestionsCache[`${searchParams.get("v")}`]){
+        if (!watchSuggestionsCache[`${searchParams.get("v")}`]) {
             fetchVideoSuggestions();
-        }else{
+        } else {
             setSuggestionVideos(watchSuggestionsCache[`${searchParams.get("v")}`]);
         }
     }, []);
@@ -85,10 +86,13 @@ const WatchPage = () => {
                 </div>
                 <CommentsContainer commentsList={videoComments} />
             </div>
-            <div className='suggestion-video-container'>
+            {!isLivePage && <div className='suggestion-video-container'>
                 <h3>Suggestions</h3>
                 {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)}
-            </div>
+            </div>}
+            {isLivePage && <div>
+                Live chat
+            </div>}
         </div>
     )
 }

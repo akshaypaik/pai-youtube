@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from './Button/Button';
 import './ButtonList.css';
 
@@ -26,6 +26,7 @@ const ButtonList = () => {
         "Lessons"
     ];
     const containerRef = useRef(null);
+    const [selectedMenuButton, setSelectedMenuButton] = useState("All");
 
     const scroll = (direction) => {
         if (containerRef.current) {
@@ -34,12 +35,18 @@ const ButtonList = () => {
         }
     };
 
+    const onButtonMenuSelect = (selectedMenuButton) => {
+        setSelectedMenuButton(selectedMenuButton);
+    }
 
     return (
         <div className='btn-list-wrapper'>
             <button className='scroll-button left' onClick={() => scroll('left')}>{'<'}</button>
             <div className='btn-list-container' ref={containerRef}>
-                {buttonList.map((item) => <Button key={item} buttonName={item} />)}
+                {buttonList.map((item) =>
+                    <Button key={item} buttonName={item}
+                        onButtonMenuSelect={onButtonMenuSelect}
+                        selectedMenuButton={selectedMenuButton} />)}
             </div>
             <button className='scroll-button right' onClick={() => scroll('right')}>{'>'}</button>
         </div>

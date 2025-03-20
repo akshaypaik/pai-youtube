@@ -1,0 +1,18 @@
+.live-page-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.video-card-live button{
+    background: rgba(225,0,45,0.9);
+    border: transparent;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

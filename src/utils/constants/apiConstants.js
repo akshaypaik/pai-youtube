@@ -12,5 +12,7 @@ export const YOUTUBE_VIDEO_SUGGESTIONS_USING_ID = "https://www.googleapis.com/yo
 
 export const YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID = "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&videoCategoryId="
 
+export const YOUTUBE_VIDEO_LIVE = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&eventType=live&maxResults=10&key=${YOUTUBE_API_KEY}`
+
 
 

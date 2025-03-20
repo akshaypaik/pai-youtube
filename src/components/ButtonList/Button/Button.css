@@ -15,3 +15,9 @@
     background: rgba(255, 255, 255, 0.2);
     border-color: transparent;
 }
+
+.btn-selected button{
+    background-color: white !important;
+    color: black !important;
+    border-radius: 8px;
+}
