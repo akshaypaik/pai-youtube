@@ -6,7 +6,8 @@ const apiCacheSlice = createSlice({
         mostPopularVideos: {},
         watchVideoDetails: {},
         watchVideoComments: {},
-        watchVideoSuggestions: {}
+        watchVideoSuggestions: {},
+        liveVideos: {}
     },
     reducers: {
         updateMostPopularVideosCache: (state, action) => {
@@ -26,6 +27,9 @@ const apiCacheSlice = createSlice({
             if (!state.watchVideoSuggestions[action.payload.videoId]) {
                 state.watchVideoSuggestions[action.payload.videoId] = action.payload.suggestionDetails;
             }
+        },
+        updateLiveVideosCache: (state, action) => {
+            state.liveVideos = action.payload;
         }
     }
 });
@@ -36,5 +40,6 @@ export const {
     updateMostPopularVideosCache,
     updateWatchVideoDetailsCache,
     updateWatchVideoCommentDetailsCache,
-    updateWatchVideoSuggestionDetailsCache
+    updateWatchVideoSuggestionDetailsCache,
+    updateLiveVideosCache
 } = apiCacheSlice.actions; 

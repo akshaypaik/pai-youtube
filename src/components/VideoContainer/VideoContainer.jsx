@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMostPopularVideosCache } from '../../utils/ReduxStore/apiCacheSlice';
 import Error from '../Error/Error';
+import { setLivePageFlag } from '../../utils/ReduxStore/appSlice';
 
 const VideoContainer = () => {
 
@@ -21,7 +22,8 @@ const VideoContainer = () => {
   }
 
   useEffect(() => {
-    if(mostPopularVideoCache.length > 0) {
+    dispatch(setLivePageFlag(false));
+    if(mostPopularVideoCache?.length > 0) {
       setPopularVideos(mostPopularVideoCache);
       return;
     }

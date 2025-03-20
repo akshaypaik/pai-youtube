@@ -3,29 +3,36 @@ import './LivePage.css';
 import { YOUTUBE_VIDEO_LIVE } from '../../utils/constants/apiConstants';
 import VideoCard from '../VideoContainer/VideoCard/VideoCard';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLivePageFlag } from '../../utils/ReduxStore/appSlice';
+import { updateLiveVideosCache } from '../../utils/ReduxStore/apiCacheSlice';
 
 const LivePage = () => {
 
     const [liveVideos, setLiveVideos] = useState([]);
     const dispatch = useDispatch();
+    const liveVideosCache = useSelector((store) => store.apiCache.liveVideos);
 
     const fetchLiveVideos = async () => {
         const result = await fetch(`${YOUTUBE_VIDEO_LIVE}`);
         const resultJson = await result.json();
         console.log("live videos data: ", resultJson);
         setLiveVideos(resultJson.items);
+        dispatch(updateLiveVideosCache(resultJson.items));
     }
     const VideoCardWithLiveLabel = VideoCardLive(VideoCard);
 
     useEffect(() => {
-        fetchLiveVideos();
+
+        // early return with cache data to avoid api call again
+        if (liveVideosCache?.length > 0) {
+            setLiveVideos(liveVideosCache);
+        }else{
+            fetchLiveVideos();
+        }
+
         dispatch(setLivePageFlag(true));
 
-        return () => {
-            // dispatch(setLivePageFlag(false)); // commenting for testing purpose
-        }
     }, []);
 
 
