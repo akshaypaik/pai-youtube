@@ -7,6 +7,7 @@ import { YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID, YOUTUB
 import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
 import VideoCard from '../VideoContainer/VideoCard/VideoCard';
+import { updateWatchVideoCommentDetailsCache, updateWatchVideoDetailsCache, updateWatchVideoSuggestionDetailsCache } from '../../utils/ReduxStore/apiCacheSlice';
 
 const WatchPage = () => {
 
@@ -15,18 +16,23 @@ const WatchPage = () => {
     const [currentWatchVideo, setCurrentWatchVideo] = useState({});
     const [videoComments, setVideoComments] = useState([]);
     const [suggestionVideos, setSuggestionVideos] = useState([]);
+    const watchVideoCache = useSelector((store) => store.apiCache.watchVideoDetails);
+    const watchCommentsCache = useSelector((store) => store.apiCache.watchVideoComments);
+    const watchSuggestionsCache = useSelector((store) => store.apiCache.watchVideoSuggestions);
     // let currentWatchVideo = useSelector((store) => store.watch.currentWatchVideo);
 
     const fetchVideoDetails = async () => {
         const result = await fetch(`${YOUTUBE_VIDEO_DETAILS_USING_ID}${searchParams.get("v")}&key=${YOUTUBE_API_KEY}`);
         const resultJson = await result.json();
         setCurrentWatchVideo(resultJson.items[0]);
+        dispatch(updateWatchVideoDetailsCache({ videoId: `${searchParams.get("v")}`, videoDetails: resultJson.items[0] }));
     }
 
     const fetchVideoComments = async () => {
         const result = await fetch(`${YOUTUBE_VIDEO_COMMENTS_USING_ID}${searchParams.get("v")}&maxResults=50&key=${YOUTUBE_API_KEY}`);
         const resultJson = await result.json();
         setVideoComments(resultJson.items);
+        dispatch(updateWatchVideoCommentDetailsCache({ videoId: `${searchParams.get("v")}`, commentDetails: resultJson.items }));
     }
 
     const fetchVideoSuggestions = async () => {
@@ -36,13 +42,26 @@ const WatchPage = () => {
         const resultCategoryJson = await resultCategory.json();
         setSuggestionVideos(resultCategoryJson.items);
         console.log("video suggestions: ", resultCategoryJson.items);
+        dispatch(updateWatchVideoSuggestionDetailsCache({ videoId: `${searchParams.get("v")}`, suggestionDetails: resultCategoryJson.items }));
     }
 
     useEffect(() => {
         dispatch(closeSideBar());
-        fetchVideoDetails();
-        fetchVideoComments();
-        fetchVideoSuggestions();
+        if(!watchVideoCache[`${searchParams.get("v")}`]){
+            fetchVideoDetails();
+        }else{
+            setCurrentWatchVideo(watchVideoCache[`${searchParams.get("v")}`]);
+        }
+        if(!watchCommentsCache[`${searchParams.get("v")}`]){
+            fetchVideoComments();
+        }else{
+            setVideoComments(watchCommentsCache[`${searchParams.get("v")}`]);
+        }
+        if(!watchSuggestionsCache[`${searchParams.get("v")}`]){
+            fetchVideoSuggestions();
+        }else{
+            setSuggestionVideos(watchSuggestionsCache[`${searchParams.get("v")}`]);
+        }
     }, []);
 
     return (

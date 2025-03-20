@@ -3,18 +3,27 @@ import './VideoContainer.css';
 import { YOUTUBE_MOST_POPULAR_VIDEO } from '../../utils/constants/apiConstants';
 import VideoCard from './VideoCard/VideoCard';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateMostPopularVideosCache } from '../../utils/ReduxStore/apiCacheSlice';
 
 const VideoContainer = () => {
 
   const [popularVideos, setPopularVideos] = useState([]);
+  const dispatch = useDispatch();
+  const mostPopularVideoCache = useSelector((store) => store.apiCache.mostPopularVideos);
 
   const fetchPopularVideos = async () => {
     const data = await fetch(YOUTUBE_MOST_POPULAR_VIDEO);
     const jsonData = await data.json();
     setPopularVideos(jsonData.items);
+    dispatch(updateMostPopularVideosCache(jsonData.items));
   }
 
   useEffect(() => {
+    if(mostPopularVideoCache.length > 0) {
+      setPopularVideos(mostPopularVideoCache);
+      return;
+    }
     fetchPopularVideos();
   }, []);
 
