@@ -1,7 +1,7 @@
 .btn-container button {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background-color: var(--btn-bg-color);
+    color: var(--text-color);
     padding: 6px 12px;
     font-size: 12px;
     border-color: hsla(0, 0%, 53.3%, 0.4);
@@ -17,7 +17,7 @@
 }
 
 .btn-selected button{
-    background-color: white !important;
-    color: black !important;
+    background-color: var(--btn-selected-bg-color) !important;
+    color: var(--btn-selected-text-color) !important;
     border-radius: 8px;
 }

@@ -82,10 +82,12 @@ const WatchPage = () => {
                     <span>&nbsp;</span>
                     <span style={{ cursor: 'pointer' }}>...more</span>
                 </div>
-                <div className='comments-container'>
-                    {parseInt(currentWatchVideo?.statistics?.commentCount).toLocaleString()} Comments
-                </div>
-                <CommentsContainer commentsList={videoComments} />
+                {!isLivePage && <>
+                    <div className='comments-container'>
+                        {parseInt(currentWatchVideo?.statistics?.commentCount).toLocaleString()} Comments
+                    </div>
+                    <CommentsContainer commentsList={videoComments} />
+                </>}
             </div>
             {!isLivePage && <div className='suggestion-video-container'>
                 <h3>Suggestions</h3>

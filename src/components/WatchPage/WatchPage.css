@@ -1,6 +1,7 @@
 .watch-container {
     margin: 24px;
     display: flex;
+    height: 100vh;
 }
 
 .watch-video-title {
@@ -26,7 +27,7 @@
 
 .watch-video-description-container {
     max-width: 1200px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--btn-bg-color);
     padding: 16px;
     border-radius: 12px;
 }

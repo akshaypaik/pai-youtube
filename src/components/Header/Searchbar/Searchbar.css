@@ -14,10 +14,10 @@
 .search-bar input{
     /* padding: 9px; */
     padding: 9px 0 9px 18px;
-    background-color: #0f0f0f;
+    background-color: var(--bg-color);
     border: 0.5px solid hsla(0,0%,53.3%,0.4);
     border-radius: 24px;
-    color: hsla(0,100%,100%,0.88);
+    color: var(--text-color);
     width: 480px;
 }
 

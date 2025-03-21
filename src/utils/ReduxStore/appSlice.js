@@ -4,10 +4,11 @@ const appSlice = createSlice({
     name: "header",
     initialState: {
         showSideBar: true,
-        isLivePage: false
+        isLivePage: false,
+        darkMode: true
     },
     reducers: {
-        toggleSideBar: (state, action) => {
+        toggleSideBar: (state) => {
             state.showSideBar = !state.showSideBar;
         },
         closeSideBar: (state) => {
@@ -18,10 +19,13 @@ const appSlice = createSlice({
         },
         setLivePageFlag: (state, action) => {
             state.isLivePage = action.payload;
+        },
+        toggleDarkMode: (state) => {
+            state.darkMode = !state.darkMode;
         }
     }
 });
 
 export default appSlice.reducer;
 
-export const { toggleSideBar, closeSideBar, openSideBar, setLivePageFlag } = appSlice.actions;
+export const { toggleSideBar, closeSideBar, openSideBar, setLivePageFlag, toggleDarkMode } = appSlice.actions;

@@ -1,16 +1,14 @@
-.sidebar-container{
+.sidebar-container {
     /* overflow-y: scroll; */
 }
 
 .sidebar-container ul {
     padding-left: 24px;
-    color: white;
 }
 
 .sidebar-ul li {
     list-style-type: none;
     padding: 6px 24px 6px 0;
-    color: #f1f1f1;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -20,19 +18,19 @@
     white-space: nowrap;
 }
 
-.router-link{
+.router-link {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 .sidebar-ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--btn-bg-color);
     cursor: pointer;
     border-radius: 8px;
 }
 
-.sidebar-ul h4{
+.sidebar-ul h4 {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -40,15 +38,15 @@
 
 hr {
     border: none;
-    border-top: 0.5px solid hsla(0,0%,53.3%,0.4);
+    border-top: 0.5px solid hsla(0, 0%, 53.3%, 0.4);
 }
 
-.selected-tab{
-    background-color: rgba(255, 255, 255, 0.1);
+.selected-tab {
+    background-color: var(--btn-bg-color);
     cursor: pointer;
     border-radius: 8px;
 }
 
-a{
+a {
     all: unset;
 }

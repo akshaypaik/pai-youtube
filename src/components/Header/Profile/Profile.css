@@ -1,16 +1,17 @@
 .profile-container {
     color: white;
-    margin-right: 24px;
+    margin-right: 48px;
     display: flex;
-    gap: 36px;
+    gap: 24px;
+    align-items: center;
 }
 
 .create-btn {
-    background: rgba(255,255,255,0.1);
+    background: var(--header-create-btn-bg-color);
     padding: 4px 8px;
     border-radius: 24px;
     border: 0.5px solid hsla(0, 0%, 53.3%, 0.4);
-    color: white;
+    color: var(--text-color);
     font-weight: 600;
     letter-spacing: 0.3px;
     cursor: pointer;
@@ -32,5 +33,9 @@
 .profile-container img {
     height: 36px;
     border-radius: 24px;
+    cursor: pointer;
+}
+
+.dark-mode-container svg{
     cursor: pointer;
 }

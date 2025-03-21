@@ -11,7 +11,7 @@
 }
 
 .chat-message-container:hover{
-    background-color: rgba(255,255,255,0.1);
+    background-color: var(--btn-bg-color);
     cursor: pointer;
 }
 
@@ -24,6 +24,6 @@
 
 .chat-msg-author-message{
     font-weight: 400;
-    color: white;
+    color: var(--text-color);
     font-size: 0.8rem;
 }

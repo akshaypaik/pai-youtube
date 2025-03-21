@@ -7,7 +7,7 @@ const Logo = () => {
         <Link to={"/"}>
             <div className='logo-container'>
                 <img alt='youtube-logo' src='https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-06-512.png' />
-                <p style={{ color: 'white', cursor: 'pointer' }}>Pai Youtube</p>
+                <p style={{ cursor: 'pointer' }}>Pai Youtube</p>
             </div>
         </Link>
     )
