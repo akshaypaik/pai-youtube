@@ -14,5 +14,8 @@ export const YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID = "https://www.googleapi
 
 export const YOUTUBE_VIDEO_LIVE = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&eventType=live&maxResults=10&key=${YOUTUBE_API_KEY}`
 
+export const YOUTUBE_CHANNEL_IMAGE_USING_ID = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=";
+
+
 
 

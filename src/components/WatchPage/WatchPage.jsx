@@ -3,20 +3,24 @@ import './WatchPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSideBar } from '../../utils/ReduxStore/appSlice';
 import { useSearchParams } from 'react-router-dom';
-import { YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID, YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID, YOUTUBE_VIDEO_SUGGESTIONS_USING_ID } from '../../utils/constants/apiConstants';
+import { YOUTUBE_CHANNEL_IMAGE_USING_ID, YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID, YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID, YOUTUBE_VIDEO_SUGGESTIONS_USING_ID } from '../../utils/constants/apiConstants';
 import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
 import VideoCard from '../VideoContainer/VideoCard/VideoCard';
 import { updateWatchVideoCommentDetailsCache, updateWatchVideoDetailsCache, updateWatchVideoSuggestionDetailsCache } from '../../utils/ReduxStore/apiCacheSlice';
 import LiveChat from '../LivePage/LiveChat/LiveChat';
+import { calculateDaysAgo, viewCountConvertor } from '../../utils/helper';
 
 const WatchPage = () => {
 
     const dispatch = useDispatch();
+
     const [searchParams] = useSearchParams();
     const [currentWatchVideo, setCurrentWatchVideo] = useState({});
     const [videoComments, setVideoComments] = useState([]);
     const [suggestionVideos, setSuggestionVideos] = useState([]);
+    const [videoChannelDetails, setVideoChannelDetails] = useState(null);
+
     const isLivePage = useSelector((store) => store.app.isLivePage);
     const watchVideoCache = useSelector((store) => store.apiCache.watchVideoDetails);
     const watchCommentsCache = useSelector((store) => store.apiCache.watchVideoComments);
@@ -47,6 +51,17 @@ const WatchPage = () => {
         dispatch(updateWatchVideoSuggestionDetailsCache({ videoId: `${searchParams.get("v")}`, suggestionDetails: resultCategoryJson.items }));
     }
 
+    const fetchChannelDetails = async () => {
+        if (currentWatchVideo?.snippet?.channelId) {
+            const result = await fetch(`${YOUTUBE_CHANNEL_IMAGE_USING_ID}${currentWatchVideo?.snippet?.channelId}&key=${YOUTUBE_API_KEY}`);
+            const resultJson = await result.json();
+            if (resultJson?.items?.length > 0) {
+                setVideoChannelDetails(resultJson?.items[0]);
+                console.log(resultJson?.items[0]?.snippet?.thumbnails?.default?.url);
+            }
+        }
+    }
+
     useEffect(() => {
         dispatch(closeSideBar());
         if (!watchVideoCache[`${searchParams.get("v")}`]) {
@@ -66,6 +81,10 @@ const WatchPage = () => {
         }
     }, []);
 
+    useEffect(() => {
+        fetchChannelDetails();
+    }, [currentWatchVideo]);
+
     return (
         <div className='watch-container'>
             <div>
@@ -76,8 +95,18 @@ const WatchPage = () => {
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                 </iframe>
                 <div className='watch-video-title'>{currentWatchVideo?.snippet?.title}</div>
-                <div className='watch-video-channel-title'>{currentWatchVideo?.snippet?.channelTitle}</div>
+                <div className='video-channel-desc-container'>
+                    <img src={videoChannelDetails?.snippet?.thumbnails?.default?.url} />
+                    <div className='watch-video-channel-name-count'>
+                        <div className='watch-video-channel-title'>{currentWatchVideo?.snippet?.channelTitle}</div>
+                        <div className='watch-video-channel-subs-count'>{viewCountConvertor(videoChannelDetails?.statistics?.subscriberCount)} subscribers</div>
+                    </div>
+                </div>
                 <div className='watch-video-description-container'>
+                    <div className='watch-video-view-count-published-at'>
+                        <div className='watch-video-view-count'>{viewCountConvertor(currentWatchVideo?.statistics?.viewCount)} views</div>
+                        <div className='watch-video-published-at'>{calculateDaysAgo(currentWatchVideo?.snippet?.publishedAt)}</div>
+                    </div>
                     <div className='watch-video-description'>{currentWatchVideo?.snippet?.description}</div>
                     <span>&nbsp;</span>
                     <span style={{ cursor: 'pointer' }}>...more</span>

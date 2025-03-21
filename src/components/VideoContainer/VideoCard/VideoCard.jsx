@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './VideoCard.css';
 import { updateCurrentWatchVideo } from '../../../utils/ReduxStore/watchSlice';
 import { useDispatch } from 'react-redux';
+import { viewCountConvertor } from '../../../utils/helper';
 
 const VideoCard = ({ videoInfo }) => {
 
@@ -44,8 +45,8 @@ const VideoCard = ({ videoInfo }) => {
                 <li className='video-title'>{title}</li>
                 <li className='video-channel-title'>{channelTitle}</li>
                 <div className='view-count-days'>
-                    {statistics?.viewCount && <li className='video-view-count'>{statistics?.viewCount > 1000 ? (statistics?.viewCount / 1000).toFixed(2) + 'K' : statistics?.viewCount} views</li>}
-                    {statistics?.viewCount && <li>.</li>}
+                    {statistics?.viewCount && <li className='video-view-count'>{viewCountConvertor(statistics?.viewCount)} views</li>}
+                    {statistics?.viewCount && <span>&bull;</span>}
                     <li>{daysAgo}</li>
                 </div>
             </ul>
