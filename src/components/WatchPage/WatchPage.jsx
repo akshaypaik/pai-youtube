@@ -7,7 +7,7 @@ import { YOUTUBE_CHANNEL_IMAGE_USING_ID, YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUB
 import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
 import VideoCard from '../VideoContainer/VideoCard/VideoCard';
-import { updateWatchVideoCommentDetailsCache, updateWatchVideoDetailsCache, updateWatchVideoSuggestionDetailsCache } from '../../utils/ReduxStore/apiCacheSlice';
+import { updateWatchVideoChannelDetailsCache, updateWatchVideoCommentDetailsCache, updateWatchVideoDetailsCache, updateWatchVideoSuggestionDetailsCache } from '../../utils/ReduxStore/apiCacheSlice';
 import LiveChat from '../LivePage/LiveChat/LiveChat';
 import { calculateDaysAgo, viewCountConvertor } from '../../utils/helper';
 
@@ -25,6 +25,7 @@ const WatchPage = () => {
     const watchVideoCache = useSelector((store) => store.apiCache.watchVideoDetails);
     const watchCommentsCache = useSelector((store) => store.apiCache.watchVideoComments);
     const watchSuggestionsCache = useSelector((store) => store.apiCache.watchVideoSuggestions);
+    const watchChannelCache = useSelector((store) => store.apiCache.watchVideoChannelDetails);
     // let currentWatchVideo = useSelector((store) => store.watch.currentWatchVideo);
 
     const fetchVideoDetails = async () => {
@@ -57,7 +58,7 @@ const WatchPage = () => {
             const resultJson = await result.json();
             if (resultJson?.items?.length > 0) {
                 setVideoChannelDetails(resultJson?.items[0]);
-                console.log(resultJson?.items[0]?.snippet?.thumbnails?.default?.url);
+                dispatch(updateWatchVideoChannelDetailsCache({ channelId: `${currentWatchVideo?.snippet?.channelId}`, channelDetails: resultJson?.items[0] }));
             }
         }
     }
@@ -82,7 +83,11 @@ const WatchPage = () => {
     }, []);
 
     useEffect(() => {
-        fetchChannelDetails();
+        if(!watchChannelCache[`${currentWatchVideo?.snippet?.channelId}`]){
+            fetchChannelDetails();
+        }else{
+            setVideoChannelDetails(watchChannelCache[`${currentWatchVideo?.snippet?.channelId}`]);
+        }
     }, [currentWatchVideo]);
 
     return (
