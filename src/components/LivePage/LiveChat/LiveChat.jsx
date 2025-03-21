@@ -13,32 +13,38 @@ const LiveChat = () => {
     const darkMode = useSelector((store) => store.app.darkMode);
     const chatContainerRef = useRef(null);
     const myImage = "https://yt3.ggpht.com/yti/ANjgQV-zFt1B7XeQ598f8NF8stTz2kpJxymy-MZrvbuK56PTAr9K=s88-c-k-c0x00ffffff-no-rj";
-
+    const firstScrollDone = useRef(false);
+    
     useEffect(() => {
         //API Polling
         const interval = setInterval(() => {
             console.log("API polling");
             dispatch(addChatMessage({ authorName: generateRandomNamesForLiveChat(), authorMessage: generateRandomMessagesForLiveChat(), authorImage: generateRandomUserImagesForLiveChat() }));
         }, 1500);
+        scrollToBottomOfLiveChat();
 
         return () => {
             clearInterval(interval);
         }
     }, []);
 
-    // useEffect(() => {
-    //     // Scroll to bottom whenever chatMessages changes
-    //     if (chatContainerRef.current) {
-    //         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    //     }
-    // }, [chatMessages]);
+    useEffect(() => {
+        if(chatMessages.length > 12 && !firstScrollDone.current){
+            scrollToBottomOfLiveChat();
+            firstScrollDone.current = true;
+        }
+    }, [chatMessages]);
+
+    const scrollToBottomOfLiveChat = () => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }
 
     const handleUserMessagePublish = () => {
         dispatch(addChatMessage({ authorName: "Akshay Pai", authorMessage: userMessage, authorImage: myImage  }));
         setUserMessage("");
-        if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
+        scrollToBottomOfLiveChat();
     }
 
     return (
