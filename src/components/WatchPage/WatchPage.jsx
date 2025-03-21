@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './WatchPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeSideBar } from '../../utils/ReduxStore/appSlice';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { YOUTUBE_CHANNEL_IMAGE_USING_ID, YOUTUBE_VIDEO_COMMENTS_USING_ID, YOUTUBE_VIDEO_DETAILS_USING_ID, YOUTUBE_VIDEO_SUGGESTION_USING_CATEGORY_ID, YOUTUBE_VIDEO_SUGGESTIONS_USING_ID } from '../../utils/constants/apiConstants';
 import { YOUTUBE_API_KEY } from '../../utils/constants/keyConstants';
 import CommentsContainer from './CommentsContainer/CommentsContainer';
@@ -80,12 +80,12 @@ const WatchPage = () => {
         } else {
             setSuggestionVideos(watchSuggestionsCache[`${searchParams.get("v")}`]);
         }
-    }, []);
+    }, [searchParams]);
 
     useEffect(() => {
-        if(!watchChannelCache[`${currentWatchVideo?.snippet?.channelId}`]){
+        if (!watchChannelCache[`${currentWatchVideo?.snippet?.channelId}`]) {
             fetchChannelDetails();
-        }else{
+        } else {
             setVideoChannelDetails(watchChannelCache[`${currentWatchVideo?.snippet?.channelId}`]);
         }
     }, [currentWatchVideo]);
@@ -125,7 +125,10 @@ const WatchPage = () => {
             </div>
             {!isLivePage && <div className='suggestion-video-container'>
                 <h3>Suggestions</h3>
-                {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)}
+                {/* {suggestionVideos.map((video) => <VideoCard key={video.id} videoInfo={video} />)} */}
+                {suggestionVideos?.map((video) => <Link to={`/watch?v=${video.id}`} key={video.id}>
+                    <VideoCard videoInfo={video} />
+                </Link>)}
             </div>}
             {isLivePage &&
                 <LiveChat />
