@@ -10,3 +10,9 @@
 a {
     all: unset;
 }
+
+@media screen and (max-width:586px){
+    .video-container{
+        /* justify-content: flex-start; */
+    }
+}

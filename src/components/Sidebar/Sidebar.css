@@ -46,3 +46,15 @@ hr {
 a {
     all: unset;
 }
+
+@media screen and (max-width:586px){
+    .sidebar-ul li span{
+        display: none;
+    }
+    h4{
+        font-size: 0.8rem;
+    }
+    .sidebar-container ul {
+        padding-left: 12px;
+    }
+}

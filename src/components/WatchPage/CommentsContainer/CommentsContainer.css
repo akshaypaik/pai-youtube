@@ -1,0 +1,8 @@
+@media screen and (max-width:586px) {
+    .comments-container {
+        max-width: 240px;
+        max-height: 560px;
+        overflow-y: scroll;
+        font-size: 0.6rem;
+    }
+}

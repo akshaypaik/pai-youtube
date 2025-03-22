@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css';
 import Logo from './Logo/Logo';
 import Profile from './Profile/Profile';
 import Searchbar from './Searchbar/Searchbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSideBar } from '../../utils/ReduxStore/appSlice';
+import { closeSideBar, toggleSideBar } from '../../utils/ReduxStore/appSlice';
 
 const Header = () => {
 

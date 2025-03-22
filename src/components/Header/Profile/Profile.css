@@ -39,3 +39,20 @@
 .dark-mode-container svg{
     cursor: pointer;
 }
+
+@media screen and (max-width:768px){
+    .profile-container {
+        margin-right: 18px;
+        gap: 8px;
+    }
+    .create-btn span{
+        display: none;
+    }
+}
+
+@media screen and (max-width:576px){
+    .profile-container {
+        margin-right: 18px;
+        gap: 8px;
+    }
+}

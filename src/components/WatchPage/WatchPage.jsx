@@ -93,12 +93,14 @@ const WatchPage = () => {
     return (
         <div className='watch-container'>
             <div>
-                <iframe width="1200" height="600"
-                    src={`https://www.youtube.com/embed/${searchParams.get("v")}?autoplay=1`}
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
-                </iframe>
+                <div className='iframe-container'>
+                    <iframe
+                        src={`https://www.youtube.com/embed/${searchParams.get("v")}?autoplay=1`}
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+                    </iframe>
+                </div>
                 <div className='watch-video-title'>{currentWatchVideo?.snippet?.title}</div>
                 <div className='video-channel-desc-container'>
                     <img src={videoChannelDetails?.snippet?.thumbnails?.default?.url} />

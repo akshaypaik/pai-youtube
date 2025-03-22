@@ -20,7 +20,7 @@
     gap: 8px;
 }
 
-.comment-published-at{
+.comment-published-at {
     font-weight: 400;
     font-size: 0.8rem;
     color: #aaa;
@@ -45,6 +45,25 @@
 
 @media only screen and (max-width: 1600px) {
     .comment-description {
-        max-width: 1000px;
+        max-width: 800px;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (max-width:586px) {
+    .comments-card {
+        font-size: 0.6rem;
+    }
+
+    .comment-author-image img {
+        height: 24px;
+    }
+
+    .comment-author {
+        font-size: 0.6rem;
+    }
+
+    .comment-published-at{
+        font-size: 0.6rem;
     }
 }

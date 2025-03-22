@@ -17,3 +17,15 @@
 .logo-container p{
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 768px) {
+    .logo-container p{
+        display: none;
+    }
+}
+
+@media screen and (max-width:576px){
+    .logo-container img{
+        display: none;
+    }
+}

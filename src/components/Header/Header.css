@@ -4,6 +4,7 @@
     height: 48px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .menu-logo-container{
@@ -22,4 +23,25 @@
     background-color: rgba(255,255,255,0.1);
     border-radius: 24px;
     padding: 0px 8px;
+}
+
+/**
+Common breakpoints ->
+
+Small (Mobile)	max-width: 576px
+Medium (Tablet)	max-width: 768px
+Large (Laptop)	max-width: 1024px
+Extra Large (Desktop)	max-width: 1200px
+**/
+
+@media screen and (max-width:768px){
+    .menu-logo-container{
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width:576px){
+    .menu-logo-container{
+        gap: 4px;
+    }
 }

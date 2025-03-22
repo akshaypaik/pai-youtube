@@ -16,7 +16,7 @@ const Profile = () => {
         <div className='profile-container'>
             <button className='create-btn'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill={darkMode ? 'white' : 'black'} enableBackground="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style={{ display: 'inherit', height: '18px' }}><path d="M20 12h-8v8h-1v-8H3v-1h8V3h1v8h8v1z"></path></svg>
-                Create
+                <span>Create</span>
             </button>
             <img alt='avatar' src='https://yt3.ggpht.com/yti/ANjgQV-zFt1B7XeQ598f8NF8stTz2kpJxymy-MZrvbuK56PTAr9K=s88-c-k-c0x00ffffff-no-rj' />
             <div className='dark-mode-container' onClick={handleDarkMode}>
@@ -26,7 +26,7 @@ const Profile = () => {
                     </svg> :
                     <svg height="42" viewBox="0 0 28 28" fill="white">
                         <circle cx="14" cy="14" r="3.5" stroke="black"></circle>
-                        <path d="M14 8.5V6.5" stroke="black" stroke-linecap="round"></path><path d="M17.889 10.1115L19.3032 8.69727" stroke="black" stroke-linecap="round"></path><path d="M19.5 14L21.5 14" stroke="black" stroke-linecap="round"></path><path d="M17.889 17.8885L19.3032 19.3027" stroke="black" stroke-linecap="round"></path><path d="M14 21.5V19.5" stroke="black" stroke-linecap="round"></path><path d="M8.69663 19.3029L10.1108 17.8887" stroke="black" stroke-linecap="round"></path><path d="M6.5 14L8.5 14" stroke="black" stroke-linecap="round"></path><path d="M8.69663 8.69711L10.1108 10.1113" stroke="black" stroke-linecap="round"></path>
+                        <path d="M14 8.5V6.5" stroke="black" strokeLinecap="round"></path><path d="M17.889 10.1115L19.3032 8.69727" stroke="black" strokeLinecap="round"></path><path d="M19.5 14L21.5 14" stroke="black" strokeLinecap="round"></path><path d="M17.889 17.8885L19.3032 19.3027" stroke="black" strokeLinecap="round"></path><path d="M14 21.5V19.5" stroke="black" strokeLinecap="round"></path><path d="M8.69663 19.3029L10.1108 17.8887" stroke="black" strokeLinecap="round"></path><path d="M6.5 14L8.5 14" stroke="black" strokeLinecap="round"></path><path d="M8.69663 8.69711L10.1108 10.1113" stroke="black" strokeLinecap="round"></path>
                     </svg>
                 }
             </div>

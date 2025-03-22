@@ -37,3 +37,17 @@
     gap: 6px;
     align-items: center;
 }
+
+@media screen and (max-width:586px){
+    .video-card-container img{
+       height: 140px;
+    }
+    .video-channel-title, .video-view-count, .view-count-days{
+        color: #aaa;
+        font-size: 0.6rem;
+    }
+    .video-title{
+        text-overflow: ellipsis;
+        max-width: 180px;
+    }
+}
