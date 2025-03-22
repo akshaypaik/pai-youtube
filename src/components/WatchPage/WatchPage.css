@@ -70,6 +70,20 @@ h3 {
     margin: 0 0 18px 0;
 }
 
+@media screen and (max-width: 2400px) {
+    iframe {
+        width: 1200px;
+        height: 600px;
+    }
+
+    .watch-video-description-container,
+    .watch-video-title,
+    .watch-video-channel-title,
+    .comments-container {
+        max-width: 1000px;
+    }
+}
+
 @media screen and (max-width: 1600px) {
     iframe {
         width: 1000px;
