@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Body from './components/Body/Body'
-import Header from './components/Header/Header'
-import WatchPage from './components/WatchPage/WatchPage';
 import MainContainer from './components/MainContainer/MainContainer';
-import LivePage from './components/LivePage/LivePage';
 import VideoContainer from './components/VideoContainer/VideoContainer';
+import { lazy, Suspense } from 'react';
+
+const WatchPage = lazy(() => import("./components/WatchPage/WatchPage.jsx"));
+const LivePage = lazy(() => import("./components/LivePage/LivePage.jsx"));
 
 const appRouter = createBrowserRouter([
   {
@@ -22,13 +23,13 @@ const appRouter = createBrowserRouter([
           },
           {
             path: '/live',
-            element: <LivePage />
+            element: <Suspense><LivePage /></Suspense>
           }
         ]
       },
       {
         path: '/watch',
-        element: <WatchPage />
+        element: <Suspense><WatchPage /></Suspense>
       }
     ]
   }
